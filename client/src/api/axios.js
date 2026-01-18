@@ -2,8 +2,7 @@ import axios from "axios";
 
 // 1️⃣ Create axios instance
 const api = axios.create({
-  // baseURL: "http://localhost:3001/",
-  baseURL: "https://bookcrud-mu.vercel.app",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3001",
   // backend base URL
 });
 
@@ -18,9 +17,8 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
-
 
 // 3️⃣ Response interceptor → auto logout on token expiry
 api.interceptors.response.use(
@@ -31,7 +29,7 @@ api.interceptors.response.use(
       window.location.href = "/login";
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
