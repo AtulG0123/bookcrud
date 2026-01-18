@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 1️⃣ Create axios instance
 const api = axios.create({
-  baseURL: "http://localhost:3001", // backend base URL
+  baseURL: "https://bookcrud-3sel.vercel.app/", // backend base URL
 });
 
 // 2️⃣ Request interceptor → attach token automatically
